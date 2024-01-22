@@ -1,7 +1,6 @@
 package com.sparta.clonecodingunicorn.domain.member.service;
 
 import com.sparta.clonecodingunicorn.domain.member.dto.SignupRequestDto;
-import com.sparta.clonecodingunicorn.domain.member.dto.SignupResponseDto;
 import com.sparta.clonecodingunicorn.domain.member.entity.Member;
 import com.sparta.clonecodingunicorn.domain.member.repository.MemberRepository;
 import com.sparta.clonecodingunicorn.global.jwt.JwtUtil;
@@ -17,12 +16,12 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class MemberService {
+public class ProfileService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
-    public MemberService(MemberRepository memberRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
+    public ProfileService(MemberRepository memberRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil) {
         this.memberRepository = memberRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
@@ -56,4 +55,12 @@ public class MemberService {
 
         return ResponseEntity.status(HttpStatus.CREATED).body("가입이 완료되었습니다.");
     }
+
+
+
+
+    // 로그인 된 유저 확인 메소드
+//    public Member foundMember() {
+//        MemberDetailsImpl
+//    }
 }

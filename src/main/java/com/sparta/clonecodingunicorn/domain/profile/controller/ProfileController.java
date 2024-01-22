@@ -1,28 +1,21 @@
-package com.sparta.clonecodingunicorn.domain.member.controller;
+package com.sparta.clonecodingunicorn.domain.profile.controller;
 
-import com.sparta.clonecodingunicorn.domain.member.dto.UpdateRequestDto;
-import com.sparta.clonecodingunicorn.domain.member.dto.SignupRequestDto;
 import com.sparta.clonecodingunicorn.domain.member.dto.MemberResponseDto;
+import com.sparta.clonecodingunicorn.domain.member.dto.UpdateRequestDto;
 import com.sparta.clonecodingunicorn.domain.member.service.ProfileService;
 import com.sparta.clonecodingunicorn.global.security.MemberDetailsImpl;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-public class MemberController {
+public class ProfileController {
+
     private final ProfileService profileService;
 
-    public MemberController(ProfileService profileService) {
+    public ProfileController(ProfileService profileService) {
         this.profileService = profileService;
-    }
-
-    @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody @Valid SignupRequestDto requestDto, BindingResult bindingResult) {
-        return profileService.signup(requestDto, bindingResult);
     }
 
     @GetMapping("/profile")
