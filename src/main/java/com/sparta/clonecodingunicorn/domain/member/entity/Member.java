@@ -1,6 +1,5 @@
 package com.sparta.clonecodingunicorn.domain.member.entity;
 
-import com.sparta.clonecodingunicorn.domain.member.dto.SignupRequestDto;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,6 +41,7 @@ public class Member {
     @Column
     private Boolean subscribeAgree;
 
+    private Long kakaoId;
 
     @Builder
     public Member(Long memberId, String email, String password, String name, Integer birthYear, String gender, String job, String interestArea, Boolean deleteMember, Boolean subscribeAgree) {
@@ -61,5 +61,17 @@ public class Member {
         this.email = email;
         this.password = encryptedPassword;
         this.name = name;
+    }
+
+    public Member(String email, String encryptedPassword, String name, Long kakaoId) {
+        this.email = email;
+        this.password = encryptedPassword;
+        this.name = name;
+        this.kakaoId = kakaoId;
+    }
+
+    public Member kakaoIdUpdate(Long kakaoId) {
+        this.kakaoId = kakaoId;
+        return this;
     }
 }
