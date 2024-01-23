@@ -93,4 +93,23 @@ public class ProfileService {
             member.setSubscribeAgree(requestDto.getSubscribeAgree());
         }
     }
+
+    // RequestParam 방식의 프로필 수정
+    @Transactional
+    public ResponseEntity<String> updateProfile(
+            UpdateRequestDto requestDto,
+            MemberDetailsImpl memberDetails
+    ) {
+        log.info("[log] updateProfile: 프로필 수정 시도");
+
+        String username = memberDetails.getUsername();
+        Member member = memberRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        updateMemberProfile(member, requestDto);
+        memberRepository.save(member);
+
+        log.info("[log] updateProfile: 프로필 수정 완료");
+        return ResponseEntity.ok("프로필이 수정되었습니다.");
+    }
 }

@@ -32,4 +32,29 @@ public class ProfileController {
     public ResponseEntity<String> updateMember(@RequestBody UpdateRequestDto requestDto, @AuthenticationPrincipal MemberDetailsImpl memberDetails) {
         return profileService.updateMember(requestDto, memberDetails);
     }
+
+    // Request Param 방식의 프로필 수정 기능
+    @PatchMapping("/updateProfile")
+    public ResponseEntity<String> updateProfile(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer birthYear,
+            @RequestParam(required = false) String gender,
+            @RequestParam(required = false) String job,
+            @RequestParam(required = false) String interestArea,
+            @RequestParam(required = false) Boolean deleteMember,
+            @RequestParam(required = false) Boolean subscribeAgree,
+            @AuthenticationPrincipal MemberDetailsImpl memberDetails
+    ) {
+        UpdateRequestDto requestDto = UpdateRequestDto.builder()
+                .name(name)
+                .birthYear(birthYear)
+                .gender(gender)
+                .job(job)
+                .interestArea(interestArea)
+                .deleteMember(deleteMember)
+                .subscribeAgree(subscribeAgree)
+                .build();
+
+        return profileService.updateProfile(requestDto, memberDetails);
+    }
 }
