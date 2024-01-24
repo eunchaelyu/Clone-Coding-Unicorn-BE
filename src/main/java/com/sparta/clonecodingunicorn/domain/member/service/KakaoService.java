@@ -68,7 +68,7 @@ public class KakaoService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "671600df764bdd2a2198446875a85121"); // REST API 키 삽입
-        body.add("redirect_uri", "http://localhost:8080/api/kakao/callback"); // Redirect URI 삽입
+        body.add("redirect_uri", "https://lyriczen.store/api/kakao/callback"); // Redirect URI 삽입
         body.add("code", code); // 인증 코드 삽입
 
         RequestEntity<MultiValueMap<String, String>> requestEntity = RequestEntity

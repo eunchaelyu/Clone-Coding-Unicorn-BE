@@ -12,6 +12,7 @@ public class MemberResponseDto {
     private String name;
     private Integer birthYear;
     private String gender;
+    private String emoji;
     private String job;
     private String interestArea;
     private Boolean deleteMember;
@@ -24,6 +25,7 @@ public class MemberResponseDto {
         this.name = member.getName();
         this.birthYear = member.getBirthYear();
         this.gender = member.getGender();
+        this.emoji = member.getEmoji();
         this.job = member.getJob();
         this.interestArea = member.getInterestArea();
         this.deleteMember = member.getDeleteMember();
@@ -31,13 +33,14 @@ public class MemberResponseDto {
     }
 
     @Builder
-    public MemberResponseDto(Long memberId, String email, String password, String name, Integer birthYear, String gender, String job, String interestArea, Boolean deleteMember, Boolean subscribeAgree) {
+    public MemberResponseDto(Long memberId, String email, String password, String name, Integer birthYear, String gender, String emoji, String job, String interestArea, Boolean deleteMember, Boolean subscribeAgree) {
         this.memberId = memberId;
         this.email = email;
         this.password = password;
         this.name = name;
         this.birthYear = birthYear;
         this.gender = gender;
+        this.emoji = emoji;
         this.job = job;
         this.interestArea = interestArea;
         this.deleteMember = deleteMember;

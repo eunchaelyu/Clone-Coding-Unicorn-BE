@@ -47,6 +47,7 @@ public class ProfileService {
                 .name(member.getName())
                 .birthYear(member.getBirthYear())
                 .gender(member.getGender())
+                .emoji(member.getEmoji())
                 .job(member.getJob())
                 .interestArea(member.getInterestArea())
                 .deleteMember(member.getDeleteMember())
@@ -82,6 +83,9 @@ public class ProfileService {
         }
         if (requestDto.getGender() != null) {
             member.setGender(requestDto.getGender());
+        }
+        if (requestDto.getEmoji() != null) {
+            member.setEmoji(requestDto.getEmoji());
         }
         if (requestDto.getJob() != null) {
             member.setJob(requestDto.getJob());
