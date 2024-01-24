@@ -32,6 +32,9 @@ public class Member {
     private String gender;
 
     @Column
+    private String emoji;
+
+    @Column
     private String job;
 
     @Column
@@ -46,13 +49,14 @@ public class Member {
     private Long kakaoId;
 
     @Builder
-    public Member(Long memberId, String email, String password, String name, Integer birthYear, String gender, String job, String interestArea, Boolean deleteMember, Boolean subscribeAgree) {
+    public Member(Long memberId, String email, String password, String name, Integer birthYear, String gender, String emoji, String job, String interestArea, Boolean deleteMember, Boolean subscribeAgree) {
         this.memberId = memberId;
         this.email = email;
         this.password = password;
         this.name = name;
         this.birthYear = birthYear;
         this.gender = gender;
+        this.emoji = emoji;
         this.job = job;
         this.interestArea = interestArea;
         this.deleteMember = deleteMember;

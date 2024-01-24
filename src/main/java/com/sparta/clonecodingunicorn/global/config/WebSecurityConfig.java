@@ -63,8 +63,10 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()// resources 접근 허용 설정
-                        .requestMatchers(HttpMethod.POST,"/api/**").permitAll() // '/api/member/'로 시작하는 요청 모두 접근 허가
-
+                        .requestMatchers(HttpMethod.POST,"/api/**").permitAll() // '/api/**/'로 시작하는 요청 모두 접근 허가
+                        .requestMatchers(HttpMethod.PUT,"/api/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE,"/api/**").permitAll()
                         .anyRequest().permitAll()
         );
 

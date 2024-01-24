@@ -24,7 +24,7 @@ public class PostsController {
                                                  @RequestParam(name = "isAsc", defaultValue = "true") boolean isAsc) {
 
         List<Object> postsResponseDtoList = postsService.getPosts(
-                page - 1,
+                page,
                 size,
                 sortBy,
                 isAsc
@@ -43,7 +43,7 @@ public class PostsController {
 
         List<Object> postsResponseDtoList = postsService.getPostsByCategory(
                 category,
-                page - 1,
+                page,
                 size,
                 sortBy,
                 isAsc
@@ -60,7 +60,7 @@ public class PostsController {
 
         List<Object> postsResponseDtoList = postsService.searchPosts(
                 keyword,
-                page - 1,
+                page,
                 size
         );
 
@@ -77,7 +77,7 @@ public class PostsController {
 
         List<Object> postsResponseDtoList = postsService.searchPostsBasic(
                 keyword,
-                page - 1,
+                page,
                 size,
                 sortBy,
                 isAsc
