@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -42,6 +43,10 @@ public class News extends Timestamped {
 
     @Column
     private int heartCount;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date")
+    private Date createdDate;
 
     public News(String title, String content, String imgUrl, LocalDate NewsDate, String category,String newsSummary,String tags) {
 

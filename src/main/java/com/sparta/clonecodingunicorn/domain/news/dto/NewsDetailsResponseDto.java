@@ -12,7 +12,7 @@ public class NewsDetailsResponseDto {
 
     private String content;
 
-    private String img;
+    private String imageUrl;
 
     private String category;
 
@@ -25,7 +25,7 @@ public class NewsDetailsResponseDto {
     public NewsDetailsResponseDto(News news) {
         this.title = news.getTitle();
         this.content = news.getContent();
-        this.img = news.getImgUrl();
+        this.imageUrl = news.getImgUrl();
         this.category = news.getCategory();
         this.date = news.getNewsDate();
         this.heart = news.getHeartCount();
