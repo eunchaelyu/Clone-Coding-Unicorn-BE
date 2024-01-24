@@ -12,18 +12,18 @@ public class NewsResponseDto {
 
     private String title;
 
-    private String img;
+    private LocalDate date;
 
     private String category;
 
-    private LocalDate date;
+    private String imageUrl;
 
 
     public NewsResponseDto(News news) {
         this.id = news.getId();
         this.title = news.getTitle();
-        this.img = news.getImgUrl();
-        this.category = news.getCategory();
         this.date = news.getNewsDate();
+        this.category = news.getCategory();
+        this.imageUrl = news.getImgUrl();
     }
 }

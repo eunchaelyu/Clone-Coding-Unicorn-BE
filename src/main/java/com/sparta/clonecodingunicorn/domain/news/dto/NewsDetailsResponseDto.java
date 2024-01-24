@@ -10,25 +10,22 @@ public class NewsDetailsResponseDto {
 
     private String title;
 
-    private String content;
-
-    private String imageUrl;
-
-    private String category;
+    private String contents;
 
     private LocalDate date;
 
-    private int heart;
+    private String category;
 
-    private String tag;
+    private String imageUrl;
+
+    private int heart;
 
     public NewsDetailsResponseDto(News news) {
         this.title = news.getTitle();
-        this.content = news.getContent();
-        this.imageUrl = news.getImgUrl();
-        this.category = news.getCategory();
+        this.contents = news.getContent();
         this.date = news.getNewsDate();
+        this.category = news.getCategory();
+        this.imageUrl = news.getImgUrl();
         this.heart = news.getHeartCount();
-        this.tag = news.getTag();
     }
 }

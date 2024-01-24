@@ -194,8 +194,6 @@ public class Scheduler {
                     List<String> targetTagList = Arrays.asList("주식","상장", "투자", "증시","브로커","주가","포트폴리오","경제","국내증시","해외증시","채권","투자전략","종목");
                     tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
 
-
-
                 }
                 else if(newsDetailsLinkPair.getCategory().equals("부동산")) {
                     db_category = newsDetailsLinkPair.getCategory();
