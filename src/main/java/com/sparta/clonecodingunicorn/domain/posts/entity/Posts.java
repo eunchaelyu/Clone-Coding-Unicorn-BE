@@ -22,13 +22,13 @@ public class Posts extends Timestamped {
 
     @Lob
     @Column(columnDefinition = "TEXT")
-    private String content;
+    private String contents;
 
     @Column
-    private String imgUrl;
+    private String imageUrl;
 
     @Column
-    private LocalDate newsDate;
+    private LocalDate date;
 
     @Column
     private String category;
@@ -44,12 +44,12 @@ public class Posts extends Timestamped {
     @Column(name = "created_date")
     private Date createdDate;
 
-    public Posts(String title, String content, String imgUrl, LocalDate NewsDate, String category, String newsSummary) {
+    public Posts(String title, String contents, String imageUrl, LocalDate date, String category, String newsSummary) {
 
         this.title = title;
-        this.content = content;
-        this.imgUrl = imgUrl;
-        this.newsDate = NewsDate;
+        this.contents = contents;
+        this.imageUrl = imageUrl;
+        this.date = date;
         this.category = category;
         this.newsSummary = newsSummary;
 

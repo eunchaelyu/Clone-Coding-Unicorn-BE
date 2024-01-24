@@ -36,10 +36,10 @@ public class PostsController {
     @GetMapping("/category")
     public ResponseEntity<List<Object>> getPostsByCategory(
             @RequestParam("category") String category,
-            @RequestParam("page") int page,
-            @RequestParam("size") int size,
-            @RequestParam("sortBy") String sortBy,
-            @RequestParam("isAsc") boolean isAsc) {
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size,
+            @RequestParam(name = "sortBy", defaultValue = "createdDate") String sortBy,
+            @RequestParam(name = "isAsc", defaultValue = "true") boolean isAsc) {
 
         List<Object> postsResponseDtoList = postsService.getPostsByCategory(
                 category,
@@ -55,8 +55,8 @@ public class PostsController {
     @GetMapping("/search")
     public ResponseEntity<List<Object>> searchPosts(
             @RequestParam("keyword") String keyword,
-            @RequestParam("page") int page,
-            @RequestParam("size") int size) {
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size) {
 
         List<Object> postsResponseDtoList = postsService.searchPosts(
                 keyword,
@@ -70,10 +70,10 @@ public class PostsController {
     @GetMapping("/search/basic")
     public ResponseEntity<List<Object>> searchPostsBasic(
             @RequestParam("keyword") String keyword,
-            @RequestParam("page") int page,
-            @RequestParam("size") int size,
-            @RequestParam("sortBy") String sortBy,
-            @RequestParam("isAsc") boolean isAsc) {
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size,
+            @RequestParam(name = "sortBy", defaultValue = "createdDate") String sortBy,
+            @RequestParam(name = "isAsc", defaultValue = "true") boolean isAsc) {
 
         List<Object> postsResponseDtoList = postsService.searchPostsBasic(
                 keyword,

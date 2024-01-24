@@ -13,12 +13,12 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
 
     Page<Posts> findAllByCategory(String category, Pageable pageable);
 
-    @Query("select n FROM Posts n WHERE n.title like %:keyword% or n.content like %:keyword% or n.category like %:keyword%")
+    @Query("select n FROM Posts n WHERE n.title like %:keyword% or n.contents like %:keyword% or n.category like %:keyword%")
     Page<Posts> searchNewsByKeyWord(@Param("keyword") String keyword, Pageable pageable);
 
     @Query(
             value =
-                    "SELECT * FROM news WHERE MATCH(title,content,category) AGAINST (:keyword IN BOOLEAN MODE) "+
+                    "SELECT * FROM posts WHERE MATCH(title,contents,category) AGAINST (:keyword IN BOOLEAN MODE) "+
                             "LIMIT :limit OFFSET :offset", nativeQuery = true
     )
     List<Posts> fullTextSearchNewsByKeyWordNativeVer(
@@ -28,7 +28,7 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
     );
 
     @Query(
-            value = "SELECT COUNT(*) FROM news WHERE MATCH(title,content,category) AGAINST (:keyword IN BOOLEAN MODE)",
+            value = "SELECT COUNT(*) FROM posts WHERE MATCH(title,contents,category) AGAINST (:keyword IN BOOLEAN MODE)",
             nativeQuery = true
     )
     int countSearchNewsByKeyWordNativeVer(

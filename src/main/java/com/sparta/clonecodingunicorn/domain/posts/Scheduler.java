@@ -64,7 +64,7 @@ public class Scheduler {
             // 원하는 뉴스 사이트의 URL을 지정
             String url = "https://www.sedaily.com/";
 
-            List<String> mainCategories = Arrays.asList("정치", "경제", "세계", "테크", "노동", "환경", "인권", "사회", "문화", "라이프");
+            List<String> mainCategories = Arrays.asList("증권", "부동산", "경제 · 금융", "산업","정치","사회","국제","오피니언","문화 · 스포츠","서경");
 
             Document doc = Jsoup.connect(url).get();
 
@@ -151,7 +151,7 @@ public class Scheduler {
                 String newsTitle = newsDetails_doc.select("#v-left-scroll-in > div.article_head > h1").text();
                 String newsSummary = newsDetails_doc.select("#v-left-scroll-in > div.article_con > div.con_left > div.article_summary").text();
 
-                Elements imgs = newsDetails_doc.select("div.article_view img");
+                Elements imageUrl = newsDetails_doc.select("div.article_view img");
                 Elements texts = newsDetails_doc.select("div.article_view");
                 Elements newsInfo = newsDetails_doc.select("div.article_info");
 
@@ -161,8 +161,8 @@ public class Scheduler {
                 LocalDate newsDate = LocalDate.parse(date, formatter);
 
                 String firstImageUrl = "";
-                if(imgs.first() != null) {
-                    firstImageUrl = imgs.first().absUrl("src");  // 첫 번째 이미지 URL을 가져옵니다.
+                if(imageUrl.first() != null) {
+                    firstImageUrl = imageUrl.first().absUrl("src");  // 첫 번째 이미지 URL을 가져옵니다.
                 }
 
                 // 이미지와 관련된 모든 요소를 제거합니다.
@@ -180,46 +180,44 @@ public class Scheduler {
                     element.remove();
                 }
 
-                Elements content_html = texts;// 본문 내용을 가져옵니다.
-                String content = content_html.toString();
+                Elements contents_html = texts;// 본문 내용을 가져옵니다.
+                String contents = contents_html.toString();
 
                 String db_category = "";
 
-
-                String tags = "";
-                if(newsDetailsLinkPair.getCategory().equals("정치")) {
+                if(newsDetailsLinkPair.getCategory().equals("증권")) {
                     db_category = newsDetailsLinkPair.getCategory();
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("경제")) {
+                else if(newsDetailsLinkPair.getCategory().equals("부동산")) {
                     db_category = newsDetailsLinkPair.getCategory();
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("세계")){
-                    db_category = "경제";
-                }
-                else if(newsDetailsLinkPair.getCategory().equals("테크")) {
+                else if(newsDetailsLinkPair.getCategory().equals("경제 · 금융")){
                     db_category = newsDetailsLinkPair.getCategory();
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("노동")) {
+                else if(newsDetailsLinkPair.getCategory().equals("산업")) {
                     db_category = newsDetailsLinkPair.getCategory();
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("환경")) {
-                    db_category = newsDetailsLinkPair.getCategory();
-
-                }else if(newsDetailsLinkPair.getCategory().equals("인권")) {
+                else if(newsDetailsLinkPair.getCategory().equals("정치")) {
                     db_category = newsDetailsLinkPair.getCategory();
                 }
                 else if(newsDetailsLinkPair.getCategory().equals("사회")) {
                     db_category = newsDetailsLinkPair.getCategory();
-                }
-                else if(newsDetailsLinkPair.getCategory().equals("문화")) {
+
+                }else if(newsDetailsLinkPair.getCategory().equals("국제")) {
                     db_category = newsDetailsLinkPair.getCategory();
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("라이프")) {
+                else if(newsDetailsLinkPair.getCategory().equals("오피니언")) {
+                    db_category = newsDetailsLinkPair.getCategory();
+                }
+                else if(newsDetailsLinkPair.getCategory().equals("문화 · 스포츠")) {
+                    db_category = newsDetailsLinkPair.getCategory();
+                }
+                else if(newsDetailsLinkPair.getCategory().equals("서경")) {
                     db_category = newsDetailsLinkPair.getCategory();
                 }
 
                 postsRepository.save(
-                        new Posts(newsTitle, content, firstImageUrl,
+                        new Posts(newsTitle, contents, firstImageUrl,
                                 newsDate, db_category,newsSummary)
                 );
             }

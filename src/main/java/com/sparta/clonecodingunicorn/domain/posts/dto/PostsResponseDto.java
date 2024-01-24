@@ -22,8 +22,8 @@ public class PostsResponseDto {
     public PostsResponseDto(Posts posts) {
         this.id = posts.getId();
         this.title = posts.getTitle();
-        this.date = posts.getNewsDate();
+        this.date = posts.getDate();
         this.category = posts.getCategory();
-        this.imageUrl = posts.getImgUrl();
+        this.imageUrl = posts.getImageUrl();
     }
 }

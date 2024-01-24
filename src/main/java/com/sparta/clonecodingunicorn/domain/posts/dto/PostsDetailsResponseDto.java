@@ -22,10 +22,10 @@ public class PostsDetailsResponseDto {
 
     public PostsDetailsResponseDto(Posts posts) {
         this.title = posts.getTitle();
-        this.contents = posts.getContent();
-        this.date = posts.getNewsDate();
+        this.contents = posts.getContents();
+        this.date = posts.getDate();
         this.category = posts.getCategory();
-        this.imageUrl = posts.getImgUrl();
+        this.imageUrl = posts.getImageUrl();
         this.heart = posts.getHeartCount();
     }
 }
