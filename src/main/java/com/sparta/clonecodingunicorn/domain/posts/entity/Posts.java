@@ -38,16 +38,13 @@ public class Posts extends Timestamped {
     private String newsSummary;
 
     @Column
-    private String tag;
-
-    @Column
     private int heartCount;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_date")
     private Date createdDate;
 
-    public Posts(String title, String content, String imgUrl, LocalDate NewsDate, String category, String newsSummary, String tags) {
+    public Posts(String title, String content, String imgUrl, LocalDate NewsDate, String category, String newsSummary) {
 
         this.title = title;
         this.content = content;
@@ -55,7 +52,6 @@ public class Posts extends Timestamped {
         this.newsDate = NewsDate;
         this.category = category;
         this.newsSummary = newsSummary;
-        this.tag = tags;
 
     }
 

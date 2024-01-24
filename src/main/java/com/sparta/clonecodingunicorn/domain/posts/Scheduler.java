@@ -64,7 +64,7 @@ public class Scheduler {
             // 원하는 뉴스 사이트의 URL을 지정
             String url = "https://www.sedaily.com/";
 
-            List<String> mainCategories = Arrays.asList("증권", "부동산", "경제 · 금융", "산업","정치","사회","국제","오피니언","문화 · 스포츠","서경");
+            List<String> mainCategories = Arrays.asList("정치", "경제", "세계", "테크", "노동", "환경", "인권", "사회", "문화", "라이프");
 
             Document doc = Jsoup.connect(url).get();
 
@@ -187,75 +187,44 @@ public class Scheduler {
 
 
                 String tags = "";
-
-                if(newsDetailsLinkPair.getCategory().equals("증권")) {
+                if(newsDetailsLinkPair.getCategory().equals("정치")) {
                     db_category = newsDetailsLinkPair.getCategory();
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("주식","상장", "투자", "증시","브로커","주가","포트폴리오","경제","국내증시","해외증시","채권","투자전략","종목");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
 
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("부동산")) {
+                else if(newsDetailsLinkPair.getCategory().equals("경제")) {
                     db_category = newsDetailsLinkPair.getCategory();
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("땅값", "투자", "대출금","아파트","매매","경제","임대","부동산시세","분양","주택");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("경제 · 금융")){
+                else if(newsDetailsLinkPair.getCategory().equals("세계")){
                     db_category = "경제";
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("주식시장", "무역", "부동산","세금","비트코인","주식","미국증시","금융위기","은행","카드");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("산업")) {
+                else if(newsDetailsLinkPair.getCategory().equals("테크")) {
                     db_category = newsDetailsLinkPair.getCategory();
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("생활","IT","바이오","벤처","중소기업","취업");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
 
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("정치")) {
+                else if(newsDetailsLinkPair.getCategory().equals("노동")) {
                     db_category = newsDetailsLinkPair.getCategory();
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("정부", "정당", "정책","행정","외교","선거","국회의원","행정","남북 관계","정상 회담");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
 
+                }
+                else if(newsDetailsLinkPair.getCategory().equals("환경")) {
+                    db_category = newsDetailsLinkPair.getCategory();
+
+                }else if(newsDetailsLinkPair.getCategory().equals("인권")) {
+                    db_category = newsDetailsLinkPair.getCategory();
                 }
                 else if(newsDetailsLinkPair.getCategory().equals("사회")) {
                     db_category = newsDetailsLinkPair.getCategory();
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("복지", "교육", "고용","안전","문화","환경","건강","경제","교통","인권");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
-
-                }else if(newsDetailsLinkPair.getCategory().equals("국제")) {
-                    db_category = newsDetailsLinkPair.getCategory();
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("외교", "무역", "세계정세","국제기구","경제협력","축제","관광","세계문화유산","국제회의","정치동맹");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
-                }
-                else if(newsDetailsLinkPair.getCategory().equals("오피니언")) {
-                    db_category = newsDetailsLinkPair.getCategory();
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("증권", "부동산", "국제","외교","사회","정치","산업","경제","교통","남북 관계","논평","독자투어");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
 
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("문화 · 스포츠")) {
-                    db_category = "문화";
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("전시회", "공연", "뮤지컬","영화","축제","소설","미술","축구","야구","올림픽","스포츠","방송","연예");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
+                else if(newsDetailsLinkPair.getCategory().equals("문화")) {
+                    db_category = newsDetailsLinkPair.getCategory();
                 }
-                else if(newsDetailsLinkPair.getCategory().equals("서경")) {
-                    db_category = "연예";
-                    tags += db_category;
-                    List<String> targetTagList = Arrays.asList("팬클럽", "아이돌", "영화","드라마","예능","공연","시상식","뮤직비디오","계약","논란");
-                    tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
+                else if(newsDetailsLinkPair.getCategory().equals("라이프")) {
+                    db_category = newsDetailsLinkPair.getCategory();
                 }
 
                 postsRepository.save(
                         new Posts(newsTitle, content, firstImageUrl,
-                                newsDate, db_category,newsSummary,tags)
+                                newsDate, db_category,newsSummary)
                 );
             }
 
@@ -264,27 +233,6 @@ public class Scheduler {
         }
     }
 
-    private String selectTagsForCategory(String content, String tags, List<String> targetTagList) {
-        PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>(
-                (a, b) -> a.getValue().equals(b.getValue()) ? b.getKey().compareTo(a.getKey()) : a.getValue() - b.getValue());
-
-        for (String tag : targetTagList) {
-            int count = countOccurrences(content, tag);
-            if (count > 0) {
-                pq.offer(new AbstractMap.SimpleEntry<>(tag, count));
-                if (pq.size() > 2) {
-                    pq.poll();
-                }
-            }
-        }
-
-        // Extract the top 2 tags and add them to the 'tags' string
-        while (!pq.isEmpty()) {
-            tags += " " + pq.poll().getKey();
-        }
-
-        return tags;
-    }
 
     public int countOccurrences(String text, String word) {
         int count = 0;

@@ -214,9 +214,9 @@ public class PostsService {
         return response;
     }
 
-    public PostsDetailsResponseDto getPostsDetails(Long newsId) {
+    public PostsDetailsResponseDto getPostsDetails(Long postId) {
 
-        Posts posts = postsRepository.findById(newsId).orElseThrow(() ->
+        Posts posts = postsRepository.findById(postId).orElseThrow(() ->
                 new IllegalArgumentException("존재하지 않는 뉴스 입니다.")
         );
         return new PostsDetailsResponseDto(posts);
