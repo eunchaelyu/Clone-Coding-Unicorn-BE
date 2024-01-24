@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>News Details</title>
+</head>
+<body>
+<h1>News Details</h1>
+<p th:text="${newsDetails.title}">Title</p>
+<p th:utext="${newsDetails.content}">Content</p>
+<!--<p th:text="${#dates.format(newsDetails.newsDate, 'yyyy-MM-dd')}">News Date</p>-->
+<p th:text="${newsDetails.category}">Category</p>
+<!--<p th:text="${newsDetails.newsSummary}">News Summary</p>-->
+<!-- Add more details as needed -->
+</body>
+</html>
