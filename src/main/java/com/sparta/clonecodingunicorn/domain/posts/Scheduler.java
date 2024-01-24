@@ -189,7 +189,6 @@ public class Scheduler {
                 String tags = "";
                 if(newsDetailsLinkPair.getCategory().equals("정치")) {
                     db_category = newsDetailsLinkPair.getCategory();
-
                 }
                 else if(newsDetailsLinkPair.getCategory().equals("경제")) {
                     db_category = newsDetailsLinkPair.getCategory();
@@ -199,11 +198,9 @@ public class Scheduler {
                 }
                 else if(newsDetailsLinkPair.getCategory().equals("테크")) {
                     db_category = newsDetailsLinkPair.getCategory();
-
                 }
                 else if(newsDetailsLinkPair.getCategory().equals("노동")) {
                     db_category = newsDetailsLinkPair.getCategory();
-
                 }
                 else if(newsDetailsLinkPair.getCategory().equals("환경")) {
                     db_category = newsDetailsLinkPair.getCategory();
@@ -213,7 +210,6 @@ public class Scheduler {
                 }
                 else if(newsDetailsLinkPair.getCategory().equals("사회")) {
                     db_category = newsDetailsLinkPair.getCategory();
-
                 }
                 else if(newsDetailsLinkPair.getCategory().equals("문화")) {
                     db_category = newsDetailsLinkPair.getCategory();
