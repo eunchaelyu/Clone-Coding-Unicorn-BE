@@ -1,12 +1,11 @@
-package com.sparta.clonecodingunicorn.domain.member.dto;
+package com.sparta.clonecodingunicorn.domain.profile.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class SignupResponseDto {
-    private Long memberId;
-    private String email;
-    private String password;
+@Builder
+public class UpdateRequestDto {
     private String name;
     private Integer birthYear;
     private String gender;

@@ -1,7 +1,6 @@
 package com.sparta.clonecodingunicorn.domain.member.service;
 
 import com.sparta.clonecodingunicorn.domain.member.dto.SignupRequestDto;
-import com.sparta.clonecodingunicorn.domain.member.dto.SignupResponseDto;
 import com.sparta.clonecodingunicorn.domain.member.entity.Member;
 import com.sparta.clonecodingunicorn.domain.member.repository.MemberRepository;
 import com.sparta.clonecodingunicorn.global.jwt.JwtUtil;
@@ -56,4 +55,12 @@ public class MemberService {
 
         return ResponseEntity.status(HttpStatus.CREATED).body("가입이 완료되었습니다.");
     }
+
+
+
+
+    // 로그인 된 유저 확인 메소드
+//    public Member foundMember() {
+//        MemberDetailsImpl
+//    }
 }
