@@ -19,7 +19,7 @@ public class PostsController {
 
     @GetMapping()
     public ResponseEntity<List<Object>> getPosts(@RequestParam(name = "page", defaultValue = "1") int page,
-                                                 @RequestParam(name = "size", defaultValue = "10") int size,
+                                                 @RequestParam(name = "size", defaultValue = "12") int size,
                                                  @RequestParam(name = "sortBy", defaultValue = "createdDate") String sortBy,
                                                  @RequestParam(name = "isAsc", defaultValue = "true") boolean isAsc) {
 
@@ -37,7 +37,7 @@ public class PostsController {
     public ResponseEntity<List<Object>> getPostsByCategory(
             @RequestParam("category") String category,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "size", defaultValue = "10") int size,
+            @RequestParam(name = "size", defaultValue = "12") int size,
             @RequestParam(name = "sortBy", defaultValue = "createdDate") String sortBy,
             @RequestParam(name = "isAsc", defaultValue = "true") boolean isAsc) {
 
@@ -56,7 +56,7 @@ public class PostsController {
     public ResponseEntity<List<Object>> searchPosts(
             @RequestParam("keyword") String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "size", defaultValue = "10") int size) {
+            @RequestParam(name = "size", defaultValue = "12") int size) {
 
         List<Object> postsResponseDtoList = postsService.searchPosts(
                 keyword,
@@ -71,7 +71,7 @@ public class PostsController {
     public ResponseEntity<List<Object>> searchPostsBasic(
             @RequestParam("keyword") String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "size", defaultValue = "10") int size,
+            @RequestParam(name = "size", defaultValue = "12") int size,
             @RequestParam(name = "sortBy", defaultValue = "createdDate") String sortBy,
             @RequestParam(name = "isAsc", defaultValue = "true") boolean isAsc) {
 
