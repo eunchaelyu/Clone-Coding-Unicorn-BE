@@ -1,6 +1,6 @@
-package com.sparta.clonecodingunicorn.domain.news.controller;
+package com.sparta.clonecodingunicorn.domain.posts.controller;
 
-import com.sparta.clonecodingunicorn.domain.news.Scheduler;
+import com.sparta.clonecodingunicorn.domain.posts.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

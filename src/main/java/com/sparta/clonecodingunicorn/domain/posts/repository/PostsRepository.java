@@ -1,6 +1,6 @@
-package com.sparta.clonecodingunicorn.domain.news.repository;
+package com.sparta.clonecodingunicorn.domain.posts.repository;
 
-import com.sparta.clonecodingunicorn.domain.news.entity.News;
+import com.sparta.clonecodingunicorn.domain.posts.entity.Posts;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,19 +9,19 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface NewsRepository extends JpaRepository<News, Long> {
+public interface PostsRepository extends JpaRepository<Posts, Long> {
 
-    Page<News> findAllByCategory(String category, Pageable pageable);
+    Page<Posts> findAllByCategory(String category, Pageable pageable);
 
-    @Query("select n FROM News n WHERE n.title like %:keyword% or n.content like %:keyword% or n.category like %:keyword%")
-    Page<News> searchNewsByKeyWord(@Param("keyword") String keyword, Pageable pageable);
+    @Query("select n FROM Posts n WHERE n.title like %:keyword% or n.content like %:keyword% or n.category like %:keyword%")
+    Page<Posts> searchNewsByKeyWord(@Param("keyword") String keyword, Pageable pageable);
 
     @Query(
             value =
                     "SELECT * FROM news WHERE MATCH(title,content,category) AGAINST (:keyword IN BOOLEAN MODE) "+
                             "LIMIT :limit OFFSET :offset", nativeQuery = true
     )
-    List<News> fullTextSearchNewsByKeyWordNativeVer(
+    List<Posts> fullTextSearchNewsByKeyWordNativeVer(
             @Param("keyword") String keyword,
             @Param("limit") int limit,
             @Param("offset") int offset
@@ -35,5 +35,5 @@ public interface NewsRepository extends JpaRepository<News, Long> {
             @Param("keyword") String keyword
     );
 
-    News findTopByOrderByIdDesc();
+    Posts findTopByOrderByIdDesc();
 }

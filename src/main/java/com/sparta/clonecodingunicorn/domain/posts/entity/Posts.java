@@ -1,18 +1,17 @@
-package com.sparta.clonecodingunicorn.domain.news.entity;
+package com.sparta.clonecodingunicorn.domain.posts.entity;
 
-import com.sparta.clonecodingunicorn.domain.news.Timestamped;
+import com.sparta.clonecodingunicorn.domain.posts.Timestamped;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class News extends Timestamped {
+public class Posts extends Timestamped {
 
     @jakarta.persistence.Id
     @GeneratedValue
@@ -48,7 +47,7 @@ public class News extends Timestamped {
     @Column(name = "created_date")
     private Date createdDate;
 
-    public News(String title, String content, String imgUrl, LocalDate NewsDate, String category,String newsSummary,String tags) {
+    public Posts(String title, String content, String imgUrl, LocalDate NewsDate, String category, String newsSummary, String tags) {
 
         this.title = title;
         this.content = content;

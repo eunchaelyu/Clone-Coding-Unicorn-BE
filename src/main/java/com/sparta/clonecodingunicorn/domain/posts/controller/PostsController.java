@@ -1,14 +1,13 @@
-package com.sparta.clonecodingunicorn.domain.news.controller;
+package com.sparta.clonecodingunicorn.domain.posts.controller;
 
-import com.sparta.clonecodingunicorn.domain.news.dto.NewsDetailsResponseDto;
-import com.sparta.clonecodingunicorn.domain.news.service.NewsService;
+import com.sparta.clonecodingunicorn.domain.posts.dto.PostsDetailsResponseDto;
+import com.sparta.clonecodingunicorn.domain.posts.service.PostsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 //@RestController
 //@RequestMapping("/api/news")
@@ -100,38 +99,38 @@ import java.util.Map;
 //}
 
 @RestController
-@RequestMapping("/api/news")
+@RequestMapping("/api/posts")
 @RequiredArgsConstructor
 @Slf4j
-public class NewsController {
+public class PostsController {
 
-    private final NewsService newsService;
+    private final PostsService postsService;
 
     @GetMapping()
-    public ResponseEntity<List<Object>> getNews(@RequestParam(name = "page", defaultValue = "1") int page,
-                                                @RequestParam(name = "size", defaultValue = "10") int size,
-                                                @RequestParam(name = "sortBy", defaultValue = "createdDate") String sortBy,
-                                                @RequestParam(name = "isAsc", defaultValue = "true") boolean isAsc) {
+    public ResponseEntity<List<Object>> getPosts(@RequestParam(name = "page", defaultValue = "1") int page,
+                                                 @RequestParam(name = "size", defaultValue = "10") int size,
+                                                 @RequestParam(name = "sortBy", defaultValue = "createdDate") String sortBy,
+                                                 @RequestParam(name = "isAsc", defaultValue = "true") boolean isAsc) {
 
-        List<Object> newsResponseDtoList = newsService.getNews(
+        List<Object> postsResponseDtoList = postsService.getPosts(
                 page - 1,
                 size,
                 sortBy,
                 isAsc
         );
 
-        return ResponseEntity.ok(newsResponseDtoList);
+        return ResponseEntity.ok(postsResponseDtoList);
     }
 
     @GetMapping("/category")
-    public ResponseEntity<List<Object>> getNewsByCategory(
+    public ResponseEntity<List<Object>> getPostsByCategory(
             @RequestParam("category") String category,
             @RequestParam("page") int page,
             @RequestParam("size") int size,
             @RequestParam("sortBy") String sortBy,
             @RequestParam("isAsc") boolean isAsc) {
 
-        List<Object> newsResponseDtoList = newsService.getNewsByCategory(
+        List<Object> postsResponseDtoList = postsService.getPostsByCategory(
                 category,
                 page - 1,
                 size,
@@ -139,33 +138,33 @@ public class NewsController {
                 isAsc
         );
 
-        return ResponseEntity.ok(newsResponseDtoList);
+        return ResponseEntity.ok(postsResponseDtoList);
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Object>> searchNews(
+    public ResponseEntity<List<Object>> searchPosts(
             @RequestParam("keyword") String keyword,
             @RequestParam("page") int page,
             @RequestParam("size") int size) {
 
-        List<Object> newsResponseDtoList = newsService.searchNews(
+        List<Object> postsResponseDtoList = postsService.searchPosts(
                 keyword,
                 page - 1,
                 size
         );
 
-        return ResponseEntity.ok(newsResponseDtoList);
+        return ResponseEntity.ok(postsResponseDtoList);
     }
 
     @GetMapping("/search/basic")
-    public ResponseEntity<List<Object>> searchNewsBasic(
+    public ResponseEntity<List<Object>> searchPostsBasic(
             @RequestParam("keyword") String keyword,
             @RequestParam("page") int page,
             @RequestParam("size") int size,
             @RequestParam("sortBy") String sortBy,
             @RequestParam("isAsc") boolean isAsc) {
 
-        List<Object> newsResponseDtoList = newsService.searchNewsBasic(
+        List<Object> postsResponseDtoList = postsService.searchPostsBasic(
                 keyword,
                 page - 1,
                 size,
@@ -173,13 +172,13 @@ public class NewsController {
                 isAsc
         );
 
-        return ResponseEntity.ok(newsResponseDtoList);
+        return ResponseEntity.ok(postsResponseDtoList);
     }
 
-    @GetMapping("/{newsId}")
-    public ResponseEntity<NewsDetailsResponseDto> getNewsDetails(@PathVariable Long newsId) {
-        NewsDetailsResponseDto newsDetails = newsService.getNewsDetails(newsId);
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostsDetailsResponseDto> getPostsDetails(@PathVariable Long newsId) {
+        PostsDetailsResponseDto postsDetails = postsService.getPostsDetails(newsId);
 
-        return ResponseEntity.ok(newsDetails);
+        return ResponseEntity.ok(postsDetails);
     }
 }

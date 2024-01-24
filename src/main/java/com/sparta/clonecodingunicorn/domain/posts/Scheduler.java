@@ -1,8 +1,8 @@
-package com.sparta.clonecodingunicorn.domain.news;
+package com.sparta.clonecodingunicorn.domain.posts;
 
 
-import com.sparta.clonecodingunicorn.domain.news.entity.News;
-import com.sparta.clonecodingunicorn.domain.news.repository.NewsRepository;
+import com.sparta.clonecodingunicorn.domain.posts.entity.Posts;
+import com.sparta.clonecodingunicorn.domain.posts.repository.PostsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -22,7 +22,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class Scheduler {
 
-    private final NewsRepository newsRepository;
+    private final PostsRepository postsRepository;
 
     public void runCrawling() throws InterruptedException {
         log.info("크롤링을 직접 실행합니다.");
@@ -253,8 +253,8 @@ public class Scheduler {
                     tags = selectTagsForCategory(content_html.text(), tags, targetTagList);
                 }
 
-                newsRepository.save(
-                        new News(newsTitle, content, firstImageUrl,
+                postsRepository.save(
+                        new Posts(newsTitle, content, firstImageUrl,
                                 newsDate, db_category,newsSummary,tags)
                 );
             }

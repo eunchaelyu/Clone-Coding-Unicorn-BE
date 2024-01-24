@@ -1,4 +1,4 @@
-package com.sparta.clonecodingunicorn.domain.news;
+package com.sparta.clonecodingunicorn.domain.posts;
 
 import jakarta.persistence.*;
 import lombok.Getter;
